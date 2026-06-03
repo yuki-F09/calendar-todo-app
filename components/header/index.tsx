@@ -10,12 +10,12 @@ export const Header = () => {
         </Link>
         <nav className="flex items-center gap-3">
           <Button asChild>
-            <Link href="/login">
+            <Link href="auth/login">
               ログイン
             </Link>
           </Button>
           <Button asChild variant="secondary">
-            <Link href="/signup">
+            <Link href="auth/signup">
               新規登録
             </Link>
           </Button>
