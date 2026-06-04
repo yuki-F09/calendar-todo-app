@@ -1,8 +1,7 @@
 import Link from "next/link";
 import {Button} from "@/components/ui/button"
-import { LogOut } from "@/app/auth/logout/actions";
 
-export const Header = () => {
+export const BeforeLoginHeader = () => {
   return (
     <header className="w-full bg-zinc-800 border-b border-zinc-700">
       <div className="max-w-[1440px] mx-auto px-6 py-4 flex items-center justify-between">
@@ -10,11 +9,16 @@ export const Header = () => {
           Calendar TodoApp
         </Link>
         <nav className="flex items-center gap-3">
-          <form action={LogOut}>
-            <Button type="submit" variant={"dark"}>
-              ログアウト
-            </Button>
-          </form>
+          <Button asChild>
+            <Link href="/auth/login">
+              ログイン
+            </Link>
+          </Button>
+          <Button asChild variant="secondary">
+            <Link href="/auth/signup">
+              新規登録
+            </Link>
+          </Button>
         </nav>
       </div>
     </header>
