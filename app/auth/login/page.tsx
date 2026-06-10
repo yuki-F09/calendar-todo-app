@@ -21,6 +21,7 @@ export default function LoginPage() {
               <input
                 type="email"
                 placeholder="example@email.com"
+                name="email"
                 className="w-full px-4 py-2.5 rounded-md bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
               />
             </div>
@@ -30,9 +31,11 @@ export default function LoginPage() {
               <input
                 type="password"
                 placeholder="8文字以上"
+                name="password"
                 className="w-full px-4 py-2.5 rounded-md bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
               />
             </div>
+            {/*
 
             <div className="flex flex-col gap-1">
               <label className="text-sm font-medium text-zinc-300">パスワード（確認）</label>
@@ -42,17 +45,17 @@ export default function LoginPage() {
                 className="w-full px-4 py-2.5 rounded-md bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
               />
             </div>
+            */
+            }
             {state.message && (
               <p aria-live="polite">
                 {state.message}
               </p>
             )}
-            <Button type="submit"  size={"lg"}>
+            <Button type="submit" size={"lg"}>
               ログイン
             </Button>
-
           </form>
-
           <p className="mt-6 text-sm text-zinc-400">
             アカウントをお持ちでない場合
             <Button asChild size={"lg"} variant={"secondary"}>
@@ -60,8 +63,6 @@ export default function LoginPage() {
               新規登録
             </Link>
             </Button>
-        
-
           </p>
         </div>
       </main>
