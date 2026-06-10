@@ -4,6 +4,8 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { BeforeLoginHeader } from "@/components/header/beforeLoginHeader";
 import { createClient } from "@/lib/supabase/server";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,10 +38,35 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        { user? <Header/>:<BeforeLoginHeader/>
+
+
+        { user? (
+          <>
+            <Header/>
+            <SidebarProvider defaultOpen={false}>
+            <AppSidebar/>
+            <main className="flex-1">
+              <SidebarTrigger/>
+              {children}
+            </main>
+            </SidebarProvider>
+          </>
+        )
+          :(
+            <>
+              
+              <BeforeLoginHeader/>
+              {children}
+            </>
+
+          )
+          
         }
-        {children}
+
         </body>
+
     </html>
   );
 }
+
+

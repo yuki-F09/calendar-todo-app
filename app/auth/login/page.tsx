@@ -37,9 +37,6 @@ export default function LoginPage() {
             </div>
             {/*
 
-
-            
-
             <div className="flex flex-col gap-1">
               <label className="text-sm font-medium text-zinc-300">パスワード（確認）</label>
               <input
@@ -50,8 +47,6 @@ export default function LoginPage() {
             </div>
             */
             }
-
-
             {state.message && (
               <p aria-live="polite">
                 {state.message}
@@ -60,9 +55,7 @@ export default function LoginPage() {
             <Button type="submit" size={"lg"}>
               ログイン
             </Button>
-
           </form>
-
           <p className="mt-6 text-sm text-zinc-400">
             アカウントをお持ちでない場合
             <Button asChild size={"lg"} variant={"secondary"}>
@@ -70,8 +63,6 @@ export default function LoginPage() {
               新規登録
             </Link>
             </Button>
-        
-
           </p>
         </div>
       </main>
