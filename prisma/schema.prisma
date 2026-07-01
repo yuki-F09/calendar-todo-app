@@ -13,22 +13,20 @@ datasource db {
 }
 
 model Task {
-  id    Int     @id @default(autoincrement())
-  title String
+  id          Int     @id @default(autoincrement())
+  title       String
   description String?
-  role_over Boolean @default(false)
-  auth_id String
-  tags Tag[]
+  role_over   Boolean @default(false)
+  auth_id     String
+  tags        Tag[]
 }
 
-
 model Tag {
-  id Int @id @default(autoincrement())
-  color String
+  id       Int    @id @default(autoincrement())
+  color    String
   tag_name String
-  task Task @relation(fields: [taskId], references: [id])
-  auth_id String
-  taskId Int
+  auth_id  String
+  tasks    Task[]
 }
 
 
