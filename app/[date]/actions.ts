@@ -40,7 +40,7 @@ export async function EditTask(_prevState: unknown, formData: FormData) {
 
   const title = formData.get('title') as string
   const description = (formData.get('description') as string) || null
-  //
+  
   const role_over = formData.get('role_over') === 'true'
   const tagIds = formData
     .getAll('tag_ids')
@@ -59,6 +59,7 @@ export async function EditTask(_prevState: unknown, formData: FormData) {
       tags: { set: tagIds.map((id) => ({ id })) },
     },
   })
+
   revalidatePath(`/${date}`)
   return { success: true }
 }

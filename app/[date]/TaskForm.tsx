@@ -17,15 +17,9 @@ type Props = {
 
 export default function TaskForm({ tags, buttonLabel }: Props) {
   const [selectedTagIds, setSelectedTagIds] = useState<(number | '')[]>([''])
-  const [formKey, setFormKey] = useState(0)
   const formRef = useRef<HTMLFormElement>(null)
   const [state, formAction] = useActionState(createTask, null)
 
-  useEffect(() => {
-    if (state?.success) {
-      setFormKey((k) => k + 1)
-    }
-  }, [state])
 
   const addTagSelect = () => setSelectedTagIds((prev) => [...prev, ''])
 
@@ -36,7 +30,7 @@ export default function TaskForm({ tags, buttonLabel }: Props) {
     setSelectedTagIds((prev) => prev.map((v, i) => (i === index ? value : v)))
 
   return (
-    <form key={formKey} ref={formRef} action={formAction} className="flex flex-col gap-4">
+    <form ref={formRef} action={formAction} className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
         <input
           type="text"
