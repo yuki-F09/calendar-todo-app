@@ -21,14 +21,26 @@ model Task {
   tags        Tag[]
 }
 
+enum TagColor {
+  BLUE
+  PURPLE
+  GREEN
+  ORANGE
+  RED
+  LIGHT_BLUE
+  LIGHT_PURPLE
+  LIGHT_GREEN
+  LIGHT_ORANGE
+  LIGHT_RED
+}
+
 model Tag {
-  id       Int    @id @default(autoincrement())
-  color    String
+  id       Int      @id @default(autoincrement())
+  color    TagColor
   tag_name String
   auth_id  String
   tasks    Task[]
 }
-
 
 enum RegularType {
   daily
