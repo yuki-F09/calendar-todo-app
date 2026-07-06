@@ -12,6 +12,20 @@ export const Color_Map: Record<TagColor, string>= {
     LIGHT_ORANGE: "bg-amber-400",
     LIGHT_RED: "bg-rose-400",
 }
+export const Color_Labels: Record<TagColor, string> = {
+    BLUE: "青",
+    PURPLE: "紫",
+    GREEN: "緑",
+    ORANGE: "オレンジ",
+    RED: "赤",
+    LIGHT_BLUE: "水色",
+    LIGHT_PURPLE: "薄紫",
+    LIGHT_GREEN: "黄緑",
+    LIGHT_ORANGE: "黄色",
+    LIGHT_RED: "ピンク",
+  }
+
+
 type Props = {
   color: TagColor
   tag_name: string
