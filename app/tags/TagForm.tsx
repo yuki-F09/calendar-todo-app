@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { TagColor } from "@/lib/generated/prisma/enums"
 import { Color_Labels, Color_Map } from "@/components/ui/tag"
-import { createTag } from "./actions"
+import { createTag, type TagActionState } from "./actions"
 import { useActionState } from "react"
 
 type Tag = {
@@ -13,15 +13,15 @@ type Tag = {
 }
 
 type Props = {
-  tags?: Tag[]
+  tag?: Tag
   buttonLabel: string
 }
 
-
-export default function TagForm ({ tags, buttonLabel }: Props){
+export default function TagForm({ tag, buttonLabel }: Props) {
   const colorOptions = Object.values(TagColor)
 
-  const [stete, formAction] = useActionState(createTag, null)
+  const [state, formAction] = useActionState<TagActionState, FormData>(createTag, null)
+
   return (
     <form action={formAction} className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
@@ -29,29 +29,34 @@ export default function TagForm ({ tags, buttonLabel }: Props){
           type="text"
           name="tag_name"
           placeholder="タグ名"
+          defaultValue={tag?.tag_name}
           className="w-full px-4 py-2.5 rounded-md bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
         />
+        {state?.errors?.tag_name && (
+          <p className="text-sm text-red-400">{state.errors.tag_name[0]}</p>
+        )}
       </div>
-
 
       <div className="flex flex-col gap-2">
         <p className="text-sm text-zinc-400">色を選択</p>
         <div className="flex gap-2 flex-wrap">
           {colorOptions.map((color) => (
             <label key={color} className="cursor-pointer" title={Color_Labels[color]}>
-              <input type="radio" name="color" value={color} className="sr-only peer" />
+              <input type="radio" name="color" value={color} defaultChecked={tag?.color === color} className="sr-only peer" />
               <span
                 className={`block w-7 h-7 rounded-full ${Color_Map[color]} hover:opacity-70 transition peer-checked:ring-2 peer-checked:ring-white peer-checked:ring-offset-2 peer-checked:ring-offset-zinc-900`}
               />
             </label>
           ))}
         </div>
+        {state?.errors?.color && (
+          <p className="text-sm text-red-400">{state.errors.color[0]}</p>
+        )}
       </div>
 
       <Button type="submit" size="lg">
         {buttonLabel}
       </Button>
     </form>
-
   )
 }
