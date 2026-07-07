@@ -3,6 +3,8 @@
 import { Button } from "@/components/ui/button"
 import { TagColor } from "@/lib/generated/prisma/enums"
 import { Color_Labels, Color_Map } from "@/components/ui/tag"
+import { createTag } from "./actions"
+import { useActionState } from "react"
 
 type Tag = {
   id: number
@@ -18,9 +20,8 @@ type Props = {
 
 export default function TagForm ({ tags, buttonLabel }: Props){
   const colorOptions = Object.values(TagColor)
-  const formAction = ()=>{
-    console.log("ddd")
-  }
+
+  const [stete, formAction] = useActionState(createTag, null)
   return (
     <form action={formAction} className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
