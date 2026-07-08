@@ -2,7 +2,8 @@
 import { useState, useRef, useEffect, useActionState } from 'react'
 import { Plus, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { createTask } from './actions'
+import { createTask, type TaskActionState } from './actions'
+
 
 type Tag = {
   id: number
@@ -13,13 +14,13 @@ type Tag = {
 type Props = {
   tags: Tag[]
   buttonLabel: string
+  date: string
 }
 
-export default function TaskForm({ tags, buttonLabel }: Props) {
+export default function TaskForm({ tags, buttonLabel, date }: Props) {
   const [selectedTagIds, setSelectedTagIds] = useState<(number | '')[]>([''])
   const formRef = useRef<HTMLFormElement>(null)
-  const [state, formAction] = useActionState(createTask, null)
-
+  const [state, formAction] = useActionState<TaskActionState, FormData>(createTask, null)
 
   const addTagSelect = () => setSelectedTagIds((prev) => [...prev, ''])
 
@@ -31,6 +32,7 @@ export default function TaskForm({ tags, buttonLabel }: Props) {
 
   return (
     <form ref={formRef} action={formAction} className="flex flex-col gap-4">
+      <input type="hidden" name="date" value={date} />
       <div className="flex flex-col gap-1">
         <input
           type="text"
@@ -38,6 +40,9 @@ export default function TaskForm({ tags, buttonLabel }: Props) {
           placeholder="タスクのタイトル"
           className="w-full px-4 py-2.5 rounded-md bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
         />
+        {state?.errors?.title && (
+          <p className="text-sm text-red-400">{state.errors.title[0]}</p>
+        )}
       </div>
 
       <div className="flex flex-col gap-1">

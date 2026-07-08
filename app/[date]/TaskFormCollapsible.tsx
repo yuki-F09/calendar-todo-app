@@ -12,9 +12,10 @@ type Tag = {
 
 type Props = {
   tags: Tag[]
+  date: string
 }
 
-export default function TaskFormCollapsible({ tags }: Props) {
+export default function TaskFormCollapsible({ tags, date }: Props) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -28,7 +29,7 @@ export default function TaskFormCollapsible({ tags }: Props) {
         )}
       </CollapsibleTrigger>
       <CollapsibleContent className="mt-4">
-        <TaskForm tags={tags} buttonLabel='作成' />
+        <TaskForm tags={tags} date={date} buttonLabel='作成' />
       </CollapsibleContent>
     </Collapsible>
   )

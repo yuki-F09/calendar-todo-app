@@ -16,7 +16,7 @@ export default async function DatePage({ params }: Props) {
   const [tags, tasks] = user
     ? await Promise.all([
         prisma.tag.findMany({ where: { auth_id: user.id } }),
-        prisma.task.findMany({ where: { auth_id: user.id }, include: { tags: true } }),
+        prisma.task.findMany({ where: { auth_id: user.id, date }, include: { tags: true } }),
       ])
     : [[], []]
 
@@ -30,7 +30,7 @@ export default async function DatePage({ params }: Props) {
         </div>
         <div className="Task-create-wrapper">
           <h2 className="text-lg font-semibold text-white my-3">タスク作成</h2>
-          <TaskFormCollapsible tags={tags} />
+          <TaskFormCollapsible tags={tags} date={date} />
         </div>
       </div>
     </main>

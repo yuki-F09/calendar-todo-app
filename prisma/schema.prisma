@@ -13,12 +13,14 @@ datasource db {
 }
 
 model Task {
-  id          Int     @id @default(autoincrement())
-  title       String
-  description String?
-  role_over   Boolean @default(false)
-  auth_id     String
-  tags        Tag[]
+  id           Int     @id @default(autoincrement())
+  title        String
+  description  String?
+  role_over    Boolean @default(false)
+  auth_id      String
+  isCompleted  Boolean @default(false)
+  date         String
+  tags         Tag[]
 }
 
 enum TagColor {
@@ -40,6 +42,7 @@ model Tag {
   tag_name String
   auth_id  String
   tasks    Task[]
+  tagPriority TagPriority?
 }
 
 enum RegularType {
@@ -54,4 +57,13 @@ model TagSetting{
   regular_type RegularType
   auth_id String
   tag_id Int
+}
+
+model TagPriority{
+  id Int @id @default(autoincrement())
+  priority Int
+  auth_id String
+  tag_id Int @unique
+  tag Tag @relation(fields: [tag_id], references: [id])
+  @@unique([priority, auth_id])
 }
