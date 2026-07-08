@@ -19,11 +19,9 @@ export default async function TagsPage (){
           <div className="tags-index-wrapper">
             <h1 className="text-3xl font-bold mb-8 text-center">タグ一覧</h1>
             <TagIndex tags={tags}/>
-
-
           </div>
           <div className="Tag-create-wrapper">
-            <h1 className="text-lg font-semibold text-white my-3">タグ作成</h1>
+            <h1 className="text-lg font-semibold text-white my-3 text-center">タグ作成</h1>
             <div className="flex items-center justify-between w-full px-4 py-3 rounded-md bg-zinc-700 border border-zinc-600 hover:bg-zinc-600 transition cursor-pointer">
 
               <TagForm buttonLabel="作成"/>

@@ -42,9 +42,16 @@ export function AppSidebar() {
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
+                      <Link href="/tags">タグ一覧</Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild>
                       <Link href="/regularTask">レギュラータスク設定</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
+
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
                       <Link href="/taskSetting">タスクの表示設定</Link>

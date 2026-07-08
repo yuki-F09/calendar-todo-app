@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { TagColor } from "@/lib/generated/prisma/enums"
 import { Color_Labels, Color_Map } from "@/components/ui/tag"
-import { createTag, type TagActionState } from "./actions"
+import { createTag, editTag ,type TagActionState } from "./actions"
 import { useActionState } from "react"
 
 type Tag = {
@@ -20,10 +20,12 @@ type Props = {
 export default function TagForm({ tag, buttonLabel }: Props) {
   const colorOptions = Object.values(TagColor)
 
-  const [state, formAction] = useActionState<TagActionState, FormData>(createTag, null)
+  const action = tag ? editTag : createTag
+  const [state, formAction] = useActionState<TagActionState, FormData>(action, null)
 
   return (
     <form action={formAction} className="flex flex-col gap-4">
+      {tag && <input type="hidden" name="id" value={tag.id} />}
       <div className="flex flex-col gap-1">
         <input
           type="text"
