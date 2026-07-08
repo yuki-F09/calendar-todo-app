@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect, useActionState } from 'react'
 import { Plus, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { EditTask } from './actions'
+import { EditTask, type TaskActionState } from './actions'
 
 type Tag = {
   id: number
@@ -28,7 +28,7 @@ export default function EditTaskForm({ task, tags, date }: Props) {
   const initialTagIds: (number | '')[] = task.tags.length > 0 ? task.tags.map((t) => t.id) : ['']
   const [selectedTagIds, setSelectedTagIds] = useState<(number | '')[]>(initialTagIds)
   const formRef = useRef<HTMLFormElement>(null)
-  const [state, formAction] = useActionState(EditTask, null)
+  const [state, formAction] = useActionState<TaskActionState, FormData>(EditTask, null)
 
   useEffect(() => {
     if (state?.success) {
@@ -58,7 +58,9 @@ export default function EditTaskForm({ task, tags, date }: Props) {
           className="w-full px-4 py-2.5 rounded-md bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
         />
       </div>
-
+        {state?.errors?.title && (
+          <p className="text-sm text-red-400">{state.errors.title[0]}</p>
+        )}
       <div className="flex flex-col gap-1">
         <textarea
           name="description"
@@ -66,6 +68,16 @@ export default function EditTaskForm({ task, tags, date }: Props) {
           defaultValue={task.description ?? ''}
           placeholder="タスクの詳細"
           className="w-full px-4 py-2.5 rounded-md bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition resize-none"
+        />
+      </div>
+
+      <div className="flex items-center gap-3">
+        <label className="text-sm font-medium text-zinc-300 whitespace-nowrap">タスク実行日</label>
+        <input
+          type="date"
+          name="new_date"
+          defaultValue={date}
+          className="flex-1 px-4 py-2.5 rounded-md bg-zinc-800 border border-zinc-700 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
         />
       </div>
 
