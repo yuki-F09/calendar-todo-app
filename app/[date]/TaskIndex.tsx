@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible'
 import { Button } from '@/components/ui/button'
@@ -21,6 +21,7 @@ function TaskItem({ task, tags, date }: { task: Task; tags: Tag[]; date: string 
   const [open, setOpen] = useState(false)
   const router = useRouter()
   const [isEditing, setIsEditing] = useState(false)
+  const handleEditSuccess = useCallback(() => setIsEditing(false), [])
 
   const handleDelete = async () => {
     await deleteTask(task.id, date)
@@ -66,7 +67,7 @@ function TaskItem({ task, tags, date }: { task: Task; tags: Tag[]; date: string 
         </div>
         {isEditing && (
           <div className="pt-2 border-t border-zinc-600">
-            <EditTaskForm task={task} tags={task.tags} date={date}/>
+            <EditTaskForm task={task} userTags={task.tags} tags={tags} date={date} onSuccess={handleEditSuccess} />
            
           </div>
         )}
