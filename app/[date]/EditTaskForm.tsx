@@ -22,10 +22,12 @@ type Props = {
   task: Task
   tags: Tag[]
   date: string
+  userTags?: Tag[]
+  onSuccess?: () => void
 }
 
-export default function EditTaskForm({ task, tags, date }: Props) {
-  const initialTagIds: (number | '')[] = task.tags.length > 0 ? task.tags.map((t) => t.id) : ['']
+export default function EditTaskForm({ task, tags, userTags = [], date, onSuccess }: Props) {
+  const initialTagIds: (number | '')[] = userTags.length > 0 ? userTags.map((t) => t.id) : ['']
   const [selectedTagIds, setSelectedTagIds] = useState<(number | '')[]>(initialTagIds)
   const formRef = useRef<HTMLFormElement>(null)
   const [state, formAction] = useActionState<TaskActionState, FormData>(EditTask, null)
@@ -33,8 +35,9 @@ export default function EditTaskForm({ task, tags, date }: Props) {
   useEffect(() => {
     if (state?.success) {
       formRef.current?.reset()
+      onSuccess?.()
     }
-  }, [state])
+  }, [state, onSuccess])
 
   const addTagSelect = () => setSelectedTagIds((prev) => [...prev, ''])
 
