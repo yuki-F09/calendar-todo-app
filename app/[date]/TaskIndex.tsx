@@ -19,8 +19,8 @@ type Props = {
 
 function TaskItem({ task, tags, date }: { task: Task; tags: Tag[]; date: string }) {
   const [open, setOpen] = useState(false)
-  const [isEditing, setIsEditing] = useState(false)
   const router = useRouter()
+  const [isEditing, setIsEditing] = useState(false)
 
   const handleDelete = async () => {
     await deleteTask(task.id, date)
@@ -66,6 +66,7 @@ function TaskItem({ task, tags, date }: { task: Task; tags: Tag[]; date: string 
         </div>
         {isEditing && (
           <div className="pt-2 border-t border-zinc-600">
+            <EditTaskForm task={task} tags={task.tags} date={date}/>
            
           </div>
         )}
