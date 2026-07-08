@@ -4,6 +4,8 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction';
 import { useRouter } from 'next/navigation';
+import { Hex_Color_Map } from '@/components/ui/tag';
+import type { TagColor } from '@/lib/generated/prisma/enums';
 
 
 
@@ -17,10 +19,12 @@ type Props = {
 
 export default function Calendar({tags, tasks} :Props) {
   const router = useRouter();
-  const events = tasks.map(({ id, title, date }) => ({
-    id: String(id),                                                                                           
-    title,                                                                                                    
-    start: date,                                                                                          
+  const events = tasks.map(({ id, title, date, tags }) => ({
+    id: String(id),
+    title,
+    start: date,
+    backgroundColor: tags[0] ? Hex_Color_Map[tags[0].color as TagColor] : "#4a4a4f ",
+    borderColor: tags[0] ? Hex_Color_Map[tags[0].color as TagColor] : "#4a4a4f" ,
   }))                    
 
   return (
