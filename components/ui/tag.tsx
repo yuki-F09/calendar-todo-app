@@ -12,6 +12,19 @@ export const Color_Map: Record<TagColor, string>= {
     LIGHT_ORANGE: "bg-amber-400",
     LIGHT_RED: "bg-rose-400",
 }
+export const Hex_Color_Map: Record<TagColor, string> = {
+    BLUE: "#2563eb",
+    PURPLE: "#7c3aed",
+    GREEN: "#059669",
+    ORANGE: "#d97706",
+    RED: "#e11d48",
+    LIGHT_BLUE: "#60a5fa",
+    LIGHT_PURPLE: "#a78bfa",
+    LIGHT_GREEN: "#34d399",
+    LIGHT_ORANGE: "#fbbf24",
+    LIGHT_RED: "#fb7185",
+}
+
 export const Color_Labels: Record<TagColor, string> = {
     BLUE: "青",
     PURPLE: "紫",
