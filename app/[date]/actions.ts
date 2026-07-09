@@ -82,6 +82,16 @@ export async function EditTask(_prevState: unknown, formData: FormData) {
   return { success: true }
 }
 
+export async function toggleIsCompleted(taskId: number, isCompleted: boolean, date: string) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) redirect('/auth/login')
+
+  await prisma.task.update({ where: { id: taskId, auth_id: user.id }, data: { isCompleted } })
+  revalidatePath(`/${date}`)
+}
+
 export async function deleteTask(taskId: number, date: string) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
