@@ -3,13 +3,13 @@ import { useState, useCallback } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible'
 import { Button } from '@/components/ui/button'
-import { deleteTask } from './actions'
+import { deleteTask, toggleIsCompleted } from './actions'
 import { useRouter } from 'next/navigation'
 import EditTaskForm from './EditTaskForm'
 import TaskForm from "./TaskForm"
 
 type Tag = { id: number; tag_name: string; color: string }
-type Task = { id: number; title: string; description: string | null; role_over: boolean; tags: Tag[] }
+type Task = { id: number; title: string; description: string | null; role_over: boolean; isCompleted: boolean; tags: Tag[] }
 
 type Props = {
   tasks: Task[]
@@ -31,7 +31,18 @@ function TaskItem({ task, tags, date }: { task: Task; tags: Tag[]; date: string 
   return (
     <Collapsible open={open} onOpenChange={setOpen} className="rounded-md bg-zinc-700 border border-zinc-600">
       <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 cursor-pointer hover:bg-zinc-600 transition rounded-md">
-        <span className="text-sm font-medium text-white">{task.title}</span>
+        <div className="flex items-center gap-3">
+          <input
+            type="checkbox"
+            checked={task.isCompleted}
+            onClick={(e) => e.stopPropagation()}
+            onChange={(e) => toggleIsCompleted(task.id, e.target.checked, date)}
+            className="w-4 h-4 cursor-pointer"
+          />
+          <span className={`text-sm font-medium text-white ${task.isCompleted ? 'line-through text-zinc-400' : ''}`}>
+            {task.title}
+          </span>
+        </div>
         {open ? (
           <ChevronUp className="size-4 text-zinc-400 shrink-0" />
         ) : (

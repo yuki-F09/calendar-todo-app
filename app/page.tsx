@@ -9,7 +9,7 @@ export default async function Home() {
 
   const [ tasks, tagPriorities ] = user
     ? await Promise.all([
-        prisma.task.findMany({ where: { auth_id: user.id }, include: { tags: true } }),
+        prisma.task.findMany({ where: { auth_id: user.id, isCompleted: false }, include: { tags: true } }),
         prisma.tagPriority.findMany({where: {auth_id: user.id}}),
       ])
     : [[], [], []]
