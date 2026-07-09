@@ -49,3 +49,4 @@ export default function TagPriorityForm({ tags, tagPriorities }: Props) {
     </form>
   )
 }
+
