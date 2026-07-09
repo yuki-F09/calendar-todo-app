@@ -59,7 +59,7 @@ export default function LoginPage() {
           <p className="mt-6 text-sm text-zinc-400">
             アカウントをお持ちでない場合
             <Button asChild size={"lg"} variant={"secondary"}>
-            <Link href="auth/login" >
+            <Link href="/auth/signup" >
               新規登録
             </Link>
             </Button>
