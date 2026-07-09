@@ -25,7 +25,7 @@ export function AppSidebar() {
   return (
     <Sidebar className="text-center">
       <SidebarHeader className="text-white mt-5 border-b">
-        <h1>タイトル</h1>
+        <h1>ユーザー設定</h1>
       </SidebarHeader>
       <SidebarContent>
 
@@ -46,11 +46,18 @@ export function AppSidebar() {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
 
+                  {
+
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <Link href="/regularTask">レギュラータスク設定</Link>
+
+                      {/*                       <Link href="/regularTask">レギュラータスク設定</Link> */}
+                      
+                      
+
                     </SidebarMenuButton>
                   </SidebarMenuItem>
+}
 
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
@@ -76,7 +83,8 @@ export function AppSidebar() {
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <Link href="/auth/passwordReset">パスワードリセット</Link>
+                      {/*<Link href="/auth/passwordReset">パスワードリセット</Link>*/}
+                      
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
