@@ -34,20 +34,15 @@ export default function SignUpPage() {
                 className="w-full px-4 py-2.5 rounded-md bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
               />
             </div>
-            {/*
-            
-
-
             <div className="flex flex-col gap-1">
               <label className="text-sm font-medium text-zinc-300">パスワード（確認）</label>
               <input
                 type="password"
                 placeholder="パスワードを再入力"
+                name="confirmPassword"
                 className="w-full px-4 py-2.5 rounded-md bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
               />
             </div>
-            */
-            }
 
             {state.message && (
               <p aria-live="polite">
