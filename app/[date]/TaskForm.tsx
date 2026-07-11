@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef, useEffect, useActionState } from 'react'
+import { useState, useRef, useActionState } from 'react'
 import { Plus, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { createTask, type TaskActionState } from './actions'

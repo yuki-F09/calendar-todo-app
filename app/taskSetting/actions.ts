@@ -3,7 +3,12 @@ import { prisma } from '@/lib/prisma'
 import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 
-export type TagPriorityActionState = { success: boolean; error?: string } | null
+export type TagPriorityActionState = {
+  success: boolean
+  error?: string
+  tagIds?: Record<number, number>
+  submissionId?: number
+} | null
 
 export async function upsertTagPriorities(
   _prev: TagPriorityActionState,
@@ -30,5 +35,9 @@ export async function upsertTagPriorities(
   }
 
   revalidatePath('/taskSetting')
-  return { success: true }
+  return {
+    success: true,
+    tagIds: Object.fromEntries(entries.map((e) => [e.priority, e.tag_id])),
+    submissionId: Date.now(),
+  }
 }
