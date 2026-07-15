@@ -10,6 +10,10 @@ body {
   padding: 0;
 }
 
+.fc-daygrid-day {
+  cursor: pointer;
+}
+
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: var(--font-sans);
