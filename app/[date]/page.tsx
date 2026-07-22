@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
+import { prisma } from '@/lib/prisma'
 import TaskFormCollapsible from './TaskFormCollapsible'
 import TaskIndex from './TaskIndex'
-import { getCachedTags, getCachedTasks } from './queries'
 import { NotificationProvider } from './NotificationContext'
 
 type Props = {
@@ -16,8 +16,8 @@ export default async function DatePage({ params }: Props) {
 
   const [tags, tasks] = user
     ? await Promise.all([
-        getCachedTags(user.id),
-        getCachedTasks(user.id, date),
+        prisma.tag.findMany({ where: { auth_id: user.id } }),
+        prisma.task.findMany({ where: { auth_id: user.id, date }, include: { tags: true } }),
       ])
     : [[], []]
 
