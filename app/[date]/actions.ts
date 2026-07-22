@@ -22,6 +22,7 @@ export async function createTask(_prevState: TaskActionState, formData: FormData
   if (!parsed.success) {
     return { errors: z.flattenError(parsed.error).fieldErrors }
   }
+
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -77,7 +78,6 @@ export async function EditTask(_prevState: unknown, formData: FormData) {
     },
   })
   revalidatePath(`/${oldDate}`)
-  // 新しいページをロードせずに別の日付にアクセスした場合でも日付の変更が対応されるように
   if (newDate !== oldDate) revalidatePath(`/${newDate}`)
   return { success: true }
 }

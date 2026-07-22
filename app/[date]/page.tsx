@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { prisma } from '@/lib/prisma'
 import TaskFormCollapsible from './TaskFormCollapsible'
 import TaskIndex from './TaskIndex'
+import { NotificationProvider } from './NotificationContext'
 
 type Props = {
   params: Promise<{ date: string }>
@@ -25,13 +26,15 @@ export default async function DatePage({ params }: Props) {
       <div className="w-full max-w-md mx-auto">
         <h1 className="text-3xl font-bold mb-8 text-center">{date}</h1>
 
-        <div className="task-index-wrapper">
-          <TaskIndex tasks={tasks} tags={tags} date={date} />
-        </div>
-        <div className="Task-create-wrapper">
-          <h2 className="text-lg font-semibold text-white my-3">タスク作成</h2>
-          <TaskFormCollapsible tags={tags} date={date} />
-        </div>
+        <NotificationProvider>
+          <div className="task-index-wrapper">
+            <TaskIndex tasks={tasks} tags={tags} date={date} />
+          </div>
+          <div className="Task-create-wrapper">
+            <h2 className="text-lg font-semibold text-white my-3">タスク作成</h2>
+            <TaskFormCollapsible tags={tags} date={date} />
+          </div>
+        </NotificationProvider>
       </div>
     </main>
   )

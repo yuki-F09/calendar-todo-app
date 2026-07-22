@@ -1,8 +1,9 @@
 'use client'
-import { useState, useRef, useActionState } from 'react'
+import { useState, useRef, useActionState, useEffect } from 'react'
 import { Plus, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { createTask, type TaskActionState } from './actions'
+import { useNotification } from './NotificationContext'
 
 
 type Tag = {
@@ -21,6 +22,15 @@ export default function TaskForm({ tags, buttonLabel, date }: Props) {
   const [selectedTagIds, setSelectedTagIds] = useState<(number | '')[]>([''])
   const formRef = useRef<HTMLFormElement>(null)
   const [state, formAction] = useActionState<TaskActionState, FormData>(createTask, null)
+  const { notify } = useNotification()
+
+  useEffect(() => {
+    if (state?.success) {
+      notify('タスクを作成しました')
+      formRef.current?.reset()
+      setSelectedTagIds([''])
+    }
+  }, [state, notify])
 
   const addTagSelect = () => setSelectedTagIds((prev) => [...prev, ''])
 
