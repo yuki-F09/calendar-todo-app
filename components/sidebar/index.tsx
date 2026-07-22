@@ -42,7 +42,7 @@ export function AppSidebar() {
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <Link href="/tags">タグ一覧</Link>
+                      <Link href="/tags" prefetch={false}>タグ一覧</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
 
@@ -61,7 +61,7 @@ export function AppSidebar() {
 
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <Link href="/taskSetting">タスクの表示設定</Link>
+                      <Link href="/taskSetting" prefetch={false}>タスクの表示設定</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
