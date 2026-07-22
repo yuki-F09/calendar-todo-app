@@ -3,6 +3,7 @@ import { useState, useRef, useEffect, useActionState } from 'react'
 import { Plus, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { EditTask, type TaskActionState } from './actions'
+import { useNotification } from './NotificationContext'
 
 type Tag = {
   id: number
@@ -31,13 +32,15 @@ export default function EditTaskForm({ task, tags, userTags = [], date, onSucces
   const [selectedTagIds, setSelectedTagIds] = useState<(number | '')[]>(initialTagIds)
   const formRef = useRef<HTMLFormElement>(null)
   const [state, formAction] = useActionState<TaskActionState, FormData>(EditTask, null)
+  const { notify } = useNotification()
 
   useEffect(() => {
     if (state?.success) {
       formRef.current?.reset()
       onSuccess?.()
+      notify('タスクを編集しました')
     }
-  }, [state, onSuccess])
+  }, [state, onSuccess, notify])
 
   const addTagSelect = () => setSelectedTagIds((prev) => [...prev, ''])
 
