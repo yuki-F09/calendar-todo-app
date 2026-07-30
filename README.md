@@ -115,4 +115,4 @@ npx prisma db push
 npm run dev
 ```
 
-http://localhost:3000 を開き、動作確認をしてください。
+`http://localhost:3000`を開き、動作確認をしてください。
