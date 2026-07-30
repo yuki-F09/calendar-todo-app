@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# カレンダータスクapp
 
-## Getting Started
+# デモ
 
-First, run the development server:
+## アプリURL
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+https://calendar-todo-app-ten.vercel.app/
+
+## デモアカウント
+
+メールアドレス：`user@nextapp.com`
+パスワード：`Password`
+
+# 概要
+
+## 課題
+
+自身はなかなか行動を習慣化できず、カレンダー型のタスクアプリを使っていた
+
+現状の使用しているアプリでも大きな不満はないが、タスク管理のために必要な操作をなるべく少なくし、行動の習慣化のために必要になる手間をなるべく減らしたい
+
+## 解決策
+
+以下の機能を持つアプリを作成し、タスク管理を行う
+
+- カレンダー状でタスクを管理
+- カレンダー状でタスクの種類が一目でわかるようタグとその色を反映
+- 終わっていないタスクの自動繰り越し
+
+# 利用方法
+
+- 会員登録をしてログイン後、今月のカレンダーが表示されているページにアクセスされる
+- カレンダーでは、日付ごとのタスクが表示される
+- 日付をクリックすると、その日付のページにアクセスする
+- 日付にアクセスするとその日のタスクが表示され、タスクの完了、編集、削除が可能となる
+- タスクの作成も日付のページで可能
+- サイドバーではタグの一覧ページへアクセスでき、タグの作成、編集、削除が可能
+- サイドバーからタスクの表示設定にアクセスでき、タスクが最も上に表示されるタグの順番を登録できる
+
+# 実装した機能
+
+### 認証機能
+
+- 会員登録
+- ログイン
+- ログアウト
+
+### カレンダー機能
+
+- カレンダー表示
+- 日付ごとのタスク表示
+
+### タスク機能
+
+- タスク作成
+- タスク編集
+- タスク削除
+- タスク完了
+
+### タグ機能
+
+- タグ作成
+- タグ編集
+- タグ削除
+
+### 優先順位の設定機能
+
+- 上位に表示されるタグの登録
+
+# 今後実装予定の機能
+
+- [ ]  useEffectを削除し処理の負荷軽減
+- [ ]  型をimportさせる形に変更
+- [ ]  パスワードリセット機能
+- [ ]  タスクの繰り越し機能の実装
+- [ ]  レギュラータスク（定期的に自動作成されるタスク）機能の実装
+
+# 使用したフレームワーク・ライブラリ
+
+| カテゴリ | 使用技術 |
+| --- | --- |
+| フロントエンド | Next.js/ TypeScript / Tailwind CSS / Shadcn/ui |
+| バックエンド・データベース | Supabase / Prisma ORM |
+| デプロイ | Vercel |
+
+# 使用外部API
+
+・FullCalendar
+
+# **セットアップ**
+
+1. ローカル環境にインストール
+
+```
+git clone https://github.com/yuki-F09/calendar-todo-app
+cd calendar-todo-app
+npm install
+npx prisma generate
+cp .env.example .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Supabase Dashboardから環境変数を取得
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Supabase Dashbaordから`NEXT_PUBLIC_SUPABASE_URL`と`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`を取得し、環境変数に設定してください。また、SupabaseのDatabase SettingsからPostgreSQLの接続文字列を取得し、`DATABASE_URL`と`DIRECT_URL`に設定してください。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. データベースのセットアップ 
 
-## Learn More
+```jsx
+npx prisma db push
+```
 
-To learn more about Next.js, take a look at the following resources:
+1. 開発サーバーを起動
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+http://localhost:3000 を開き、動作確認をしてください。
