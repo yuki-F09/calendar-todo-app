@@ -21,7 +21,7 @@ type Props = {
 export default function TaskForm({ tags, buttonLabel, date }: Props) {
   const [selectedTagIds, setSelectedTagIds] = useState<(number | '')[]>([''])
   const formRef = useRef<HTMLFormElement>(null)
-  const [state, formAction] = useActionState<TaskActionState, FormData>(createTask, null)
+  const [state, formAction, isPending] = useActionState<TaskActionState, FormData>(createTask, null)
   const { notify } = useNotification()
 
   useEffect(() => {
@@ -118,8 +118,8 @@ export default function TaskForm({ tags, buttonLabel, date }: Props) {
         ))}
       </div>
 
-      <Button type="submit" size="lg">
-        {buttonLabel}
+      <Button type="submit" size="lg" disabled={isPending}>
+        {isPending? "作成中":buttonLabel}
       </Button>
     </form>
   )

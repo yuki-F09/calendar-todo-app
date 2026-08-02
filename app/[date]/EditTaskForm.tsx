@@ -31,7 +31,7 @@ export default function EditTaskForm({ task, tags, userTags = [], date, onSucces
   const initialTagIds: (number | '')[] = userTags.length > 0 ? userTags.map((t) => t.id) : ['']
   const [selectedTagIds, setSelectedTagIds] = useState<(number | '')[]>(initialTagIds)
   const formRef = useRef<HTMLFormElement>(null)
-  const [state, formAction] = useActionState<TaskActionState, FormData>(EditTask, null)
+  const [state, formAction, isPending] = useActionState<TaskActionState, FormData>(EditTask, null)
   const { notify } = useNotification()
 
   useEffect(() => {
@@ -141,8 +141,8 @@ export default function EditTaskForm({ task, tags, userTags = [], date, onSucces
         ))}
       </div>
 
-      <Button type="submit" variant="success" size="lg">
-        編集
+      <Button type="submit" variant="success" size="lg" disabled={isPending}>
+        {isPending? "編集中":"編集"}
       </Button>
     </form>
   )

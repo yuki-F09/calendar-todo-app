@@ -7,7 +7,7 @@ import Link from "next/link"
 const initialState = { message: '' }
 
 export default function SignUpPage() {
-  const [state, formAction,] = useActionState(signUp, initialState)
+  const [state, formAction,isPending] = useActionState(signUp, initialState)
 
   return (
       <main className="flex-1 flex items-center justify-center px-4 py-12">
@@ -50,12 +50,9 @@ export default function SignUpPage() {
               </p>
             )}
 
-
-
-            <Button type="submit" variant={"secondary"} size={"lg"}>
-              アカウントを作成する
+            <Button type="submit" variant={"secondary"} size={"lg"} disabled={isPending}>
+              {isPending? "通信中":"アカウントを作成"}
             </Button>
-
           </form>
 
           <p className="mt-6 text-sm text-zinc-400">

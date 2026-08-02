@@ -21,7 +21,7 @@ export default function TagForm({ tag, buttonLabel }: Props) {
   const colorOptions = Object.values(TagColor)
 
   const action = tag ? editTag : createTag
-  const [state, formAction] = useActionState<TagActionState, FormData>(action, null)
+  const [state, formAction, isPending] = useActionState<TagActionState, FormData>(action, null)
 
   return (
     <form action={formAction} className="flex flex-col gap-4">
@@ -56,8 +56,8 @@ export default function TagForm({ tag, buttonLabel }: Props) {
         )}
       </div>
 
-      <Button type="submit" size="lg">
-        {buttonLabel}
+      <Button type="submit" size="lg" disabled={isPending}>
+        {isPending? "作成中": buttonLabel}
       </Button>
     </form>
   )

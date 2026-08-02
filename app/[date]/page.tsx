@@ -21,6 +21,7 @@ export default async function DatePage({ params }: Props) {
       ])
     : [[], []]
 
+    
   return (
     <main className="flex-1 flex flex-col items-center px-4 py-12">
       <div className="w-full max-w-md mx-auto">
