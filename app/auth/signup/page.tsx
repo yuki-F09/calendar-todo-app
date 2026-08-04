@@ -58,7 +58,7 @@ export default function SignUpPage() {
           <p className="mt-6 text-sm text-zinc-400">
             すでにアカウントをお持ちですか？
             <Button asChild size={"lg"}>
-            <Link href="auth/login" >
+            <Link href="/auth/login" >
               ログイン
             </Link>
             </Button>
