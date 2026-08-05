@@ -21,7 +21,6 @@ type Props = {
 
 export function TagItem ({ tag }: { tag: Tag }) {
   const router = useRouter()
-  // handleDeleteはこっちに書かないとtag１つずつの指定にならない tagsになる
     const handleDelete = async () => {
       await deleteTag(tag.id)
       router.refresh()
