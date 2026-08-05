@@ -101,7 +101,7 @@ cp .env.example .env
 
 1. Supabase Dashboardから環境変数を取得
 
-Supabase Dashbaordから`NEXT_PUBLIC_SUPABASE_URL`と`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`を取得し、環境変数に設定してください。また、SupabaseのDatabase SettingsからPostgreSQLの接続文字列を取得し、`DATABASE_URL`と`DIRECT_URL`に設定してください。
+Supabase Dashboardから`NEXT_PUBLIC_SUPABASE_URL`と`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`を取得し、環境変数に設定してください。また、SupabaseのDatabase SettingsからPostgreSQLの接続文字列を取得し、`DATABASE_URL`と`DIRECT_URL`に設定してください。
 
 1. データベースのセットアップ 
 
