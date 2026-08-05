@@ -49,7 +49,7 @@ export async function createTask(_prevState: TaskActionState, formData: FormData
   return { success: true }
 }
 
-export async function EditTask(_prevState: unknown, formData: FormData) {
+export async function editTask(_prevState: unknown, formData: FormData) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 

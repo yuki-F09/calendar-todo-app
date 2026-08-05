@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {Button} from "@/components/ui/button"
-import { LogOut } from "@/app/auth/logout/actions";
+import { logOut } from "@/app/auth/logout/actions";
 
 export const Header = () => {
   return (
@@ -10,7 +10,7 @@ export const Header = () => {
           Calendar TodoApp
         </Link>
         <nav className="flex items-center gap-3">
-          <form action={LogOut}>
+          <form action={logOut}>
             <Button type="submit" variant={"dark"}>
               ログアウト
             </Button>

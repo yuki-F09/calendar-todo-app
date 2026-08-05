@@ -12,6 +12,5 @@ export async function signIn(_prevState: State, formData: FormData): Promise<Sta
   const { error } = await supabase.auth.signInWithPassword({ email, password })
 
   if (error) return { message: error.message }
-  //return { message: 'ログインしました。' }
   redirect("/")
 }

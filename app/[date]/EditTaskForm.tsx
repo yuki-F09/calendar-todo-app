@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect, useActionState } from 'react'
 import { Plus, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { EditTask, type TaskActionState } from './actions'
+import { editTask, type TaskActionState } from './actions'
 import { useNotification } from './NotificationContext'
 
 type Tag = {
@@ -31,7 +31,7 @@ export default function EditTaskForm({ task, tags, userTags = [], date, onSucces
   const initialTagIds: (number | '')[] = userTags.length > 0 ? userTags.map((t) => t.id) : ['']
   const [selectedTagIds, setSelectedTagIds] = useState<(number | '')[]>(initialTagIds)
   const formRef = useRef<HTMLFormElement>(null)
-  const [state, formAction, isPending] = useActionState<TaskActionState, FormData>(EditTask, null)
+  const [state, formAction, isPending] = useActionState<TaskActionState, FormData>(editTask, null)
   const { notify } = useNotification()
 
   useEffect(() => {
