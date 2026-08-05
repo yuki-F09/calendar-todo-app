@@ -12,12 +12,13 @@ export default async function DatePage({ params }: Props) {
   const { date } = await params
 
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const { data } = await supabase.auth.getClaims()
+  const user = data?.claims
 
   const [tags, tasks] = user
     ? await Promise.all([
-        prisma.tag.findMany({ where: { auth_id: user.id } }),
-        prisma.task.findMany({ where: { auth_id: user.id, date }, include: { tags: true } }),
+        prisma.tag.findMany({ where: { auth_id: user.sub } }),
+        prisma.task.findMany({ where: { auth_id: user.sub, date }, include: { tags: true } }),
       ])
     : [[], []]
 

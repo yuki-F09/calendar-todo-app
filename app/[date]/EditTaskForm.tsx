@@ -34,13 +34,9 @@ export default function EditTaskForm({ task, tags, userTags = [], date, onSucces
   const [state, formAction, isPending] = useActionState<TaskActionState, FormData>(editTask, null)
   const { notify } = useNotification()
 
-  useEffect(() => {
-    if (state?.success) {
-      formRef.current?.reset()
-      onSuccess?.()
-      notify('タスクを編集しました')
-    }
-  }, [state, onSuccess, notify])
+
+
+
 
   const addTagSelect = () => setSelectedTagIds((prev) => [...prev, ''])
 
@@ -52,6 +48,7 @@ export default function EditTaskForm({ task, tags, userTags = [], date, onSucces
 
   return (
     <form ref={formRef} action={formAction} className="flex flex-col gap-4">
+      {!isPending && state?.success?<p className='text-green-400'>編集しました</p>:""}
       <input type="hidden" name="id" value={task.id} />
       <input type="hidden" name="date" value={date} />
 
