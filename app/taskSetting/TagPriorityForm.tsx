@@ -14,7 +14,7 @@ type Props = {
 const PRIORITY_COUNT = 8
 
 export default function TagPriorityForm({ tags, tagPriorities }: Props) {
-  const [state, formAction] = useActionState<TagPriorityActionState, FormData>(
+  const [state, formAction, isPending] = useActionState<TagPriorityActionState, FormData>(
     upsertTagPriorities,
     null
   )
@@ -44,8 +44,8 @@ export default function TagPriorityForm({ tags, tagPriorities }: Props) {
       ))}
       {state?.error && <p className="text-sm text-red-400">{state.error}</p>}
       {state?.success && <p className="text-sm text-green-400">保存しました</p>}
-      <Button type="submit" variant="default" size="lg">
-        決定
+      <Button type="submit" variant="default" size="lg" disabled={isPending}>
+        {isPending?"更新中":"決定"}
       </Button>
     </form>
   )

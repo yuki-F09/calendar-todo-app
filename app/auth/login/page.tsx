@@ -3,11 +3,12 @@ import { useActionState } from 'react'
 import { signIn } from './actions'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { iso } from 'zod'
 
 const initialState = { message: '' }
 
 export default function LoginPage() {
-  const [state, formAction,] = useActionState(signIn, initialState)
+  const [state, formAction,isPending] = useActionState(signIn, initialState)
 
   return (
 
@@ -44,8 +45,8 @@ export default function LoginPage() {
                 {state.message}
               </p>
             )}
-            <Button type="submit" size={"lg"}>
-              ログイン
+            <Button type="submit" size={"lg"} disabled={isPending}>
+              {isPending? "通信中":"ログイン"}
             </Button>
           </form>
           <p className="mt-6 text-sm text-zinc-400">

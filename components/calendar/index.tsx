@@ -21,7 +21,7 @@ type Props = {
 export default function Calendar({tasks, tagPriorities} :Props) {
   const router = useRouter();
   const events = tasks.map(({ id, title, date, tags }) => {
-    // 複数tagのときの順番に未対応 ??は左側がnullかundefinedで右を返す
+
     const priority = tagPriorities.find(tp => tp.tag_id === tags[0]?.id)?.priority ?? Infinity
     return{
     id: String(id),

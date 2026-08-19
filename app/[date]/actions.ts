@@ -22,8 +22,10 @@ export async function createTask(_prevState: TaskActionState, formData: FormData
   if (!parsed.success) {
     return { errors: z.flattenError(parsed.error).fieldErrors }
   }
+
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const { data } = await supabase.auth.getClaims()
+  const user = data?.claims
 
   if (!user) redirect('/auth/login')
 
@@ -40,7 +42,7 @@ export async function createTask(_prevState: TaskActionState, formData: FormData
       date: parsed.data.date,
       description,
       role_over,
-      auth_id: user.id,
+      auth_id: user.sub,
       tags: tagIds.length > 0 ? { connect: tagIds.map((id) => ({ id })) } : undefined,
     },
   })
@@ -48,9 +50,10 @@ export async function createTask(_prevState: TaskActionState, formData: FormData
   return { success: true }
 }
 
-export async function EditTask(_prevState: unknown, formData: FormData) {
+export async function editTask(_prevState: unknown, formData: FormData) {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const { data } = await supabase.auth.getClaims()
+  const user = data?.claims
 
   if (!user) redirect('/auth/login')
 
@@ -72,32 +75,33 @@ export async function EditTask(_prevState: unknown, formData: FormData) {
       description,
       role_over,
       date: newDate,
-      auth_id: user.id,
+      auth_id: user.sub,
       tags: { set: tagIds.map((id) => ({ id })) },
     },
   })
   revalidatePath(`/${oldDate}`)
-  // 新しいページをロードせずに別の日付にアクセスした場合でも日付の変更が対応されるように
   if (newDate !== oldDate) revalidatePath(`/${newDate}`)
   return { success: true }
 }
 
 export async function toggleIsCompleted(taskId: number, isCompleted: boolean, date: string) {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const { data } = await supabase.auth.getClaims()
+  const user = data?.claims
 
   if (!user) redirect('/auth/login')
 
-  await prisma.task.update({ where: { id: taskId, auth_id: user.id }, data: { isCompleted } })
+  await prisma.task.update({ where: { id: taskId, auth_id: user.sub }, data: { isCompleted } })
   revalidatePath(`/${date}`)
 }
 
 export async function deleteTask(taskId: number, date: string) {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const { data } = await supabase.auth.getClaims()
+  const user = data?.claims
 
   if (!user) redirect('/auth/login')
 
-  await prisma.task.delete({ where: { id: taskId, auth_id: user.id } })
+  await prisma.task.delete({ where: { id: taskId, auth_id: user.sub } })
   revalidatePath(`/${date}`)
 }
