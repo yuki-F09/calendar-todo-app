@@ -1,0 +1,27 @@
+- generic [active] [ref=f7e1]:
+  - banner [ref=f7e2]:
+    - generic [ref=f7e3]:
+      - link "Calendar TodoApp" [ref=f7e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=f7e5]:
+        - link "ログイン" [ref=f7e319] [cursor=pointer]:
+          - /url: /auth/login
+        - link "新規登録" [ref=f7e320] [cursor=pointer]:
+          - /url: /auth/signup
+  - button "Open Next.js Dev Tools" [ref=f7e40] [cursor=pointer]
+  - alert [ref=f7e318]
+  - main [ref=f7e321]:
+    - generic [ref=f7e322]:
+      - heading "ログイン" [level=1] [ref=f7e323]
+      - generic [ref=f7e324]:
+        - generic [ref=f7e325]:
+          - generic [ref=f7e326]: メールアドレス
+          - textbox "example@email.com" [ref=f7e327]
+        - generic [ref=f7e328]:
+          - generic [ref=f7e329]: パスワード
+          - textbox "8文字以上" [ref=f7e330]
+        - button "ログイン" [ref=f7e331]
+      - paragraph [ref=f7e332]:
+        - text: アカウントをお持ちでない場合
+        - link "新規登録" [ref=f7e333] [cursor=pointer]:
+          - /url: /auth/signup

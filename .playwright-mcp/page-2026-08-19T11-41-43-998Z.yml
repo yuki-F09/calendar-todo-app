@@ -1,0 +1,30 @@
+- generic [active] [ref=f7e1]:
+  - banner [ref=f7e2]:
+    - generic [ref=f7e3]:
+      - link "Calendar TodoApp" [ref=f7e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=f7e5]:
+        - button "ログアウト" [ref=f7e7]
+  - generic [ref=f7e8]:
+    - generic [ref=f7e10]:
+      - heading "ユーザー設定" [level=1] [ref=f7e12]
+      - generic [ref=f7e13]:
+        - generic [ref=f7e15]:
+          - button "タスク管理" [expanded] [ref=f7e16]
+          - list [ref=f7e21]:
+            - listitem [ref=f7e22]:
+              - link "タグ一覧" [ref=f7e23] [cursor=pointer]:
+                - /url: /tags
+            - listitem
+            - listitem [ref=f7e24]:
+              - link "タスクの表示設定" [ref=f7e25] [cursor=pointer]:
+                - /url: /taskSetting
+        - generic [ref=f7e27]:
+          - button "ユーザー設定" [expanded] [ref=f7e28]
+          - generic:
+            - generic:
+              - list:
+                - listitem
+    - main [ref=f7e32]:
+      - button "Toggle Sidebar" [ref=f7e33]
+  - button "Open Next.js Dev Tools" [ref=f7e40] [cursor=pointer]
