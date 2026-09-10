@@ -45,7 +45,7 @@ export default function SignUpPage() {
             </div>
 
             {state.message && (
-              <p aria-live="polite">
+              <p aria-live="polite" className="text-red-400">
                 {state.message}
               </p>
             )}

@@ -3,12 +3,12 @@ import { useActionState } from 'react'
 import { signIn } from './actions'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { iso } from 'zod'
 
+// 初回レンダリング時のみ走らせたいため関数外に設置
 const initialState = { message: '' }
 
 export default function LoginPage() {
-  const [state, formAction,isPending] = useActionState(signIn, initialState)
+  const [state, formAction, isPending] = useActionState(signIn, initialState)
 
   return (
 
@@ -37,11 +37,8 @@ export default function LoginPage() {
               />
             </div>
 
-
-
-
             {state.message && (
-              <p aria-live="polite">
+              <p aria-live="polite" className="text-red-400">
                 {state.message}
               </p>
             )}
