@@ -1,0 +1,45 @@
+- generic [active] [ref=f12e1]:
+  - banner [ref=f12e2]:
+    - generic [ref=f12e3]:
+      - link "Calendar TodoApp" [ref=f12e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=f12e5]:
+        - button "ログアウト" [ref=f12e7]
+  - generic [ref=f12e8]:
+    - generic [ref=f12e10]:
+      - heading "ユーザー設定" [level=1] [ref=f12e12]
+      - generic [ref=f12e13]:
+        - generic [ref=f12e15]:
+          - button "タスク管理" [expanded] [ref=f12e16]
+          - list [ref=f12e21]:
+            - listitem [ref=f12e22]:
+              - link "タグ一覧" [ref=f12e23] [cursor=pointer]:
+                - /url: /tags
+            - listitem
+            - listitem [ref=f12e24]:
+              - link "タスクの表示設定" [ref=f12e25] [cursor=pointer]:
+                - /url: /taskSetting
+        - generic [ref=f12e27]:
+          - button "ユーザー設定" [expanded] [ref=f12e28]
+          - generic:
+            - generic:
+              - list:
+                - listitem
+    - main [ref=f12e32]:
+      - button "Toggle Sidebar" [ref=f12e33]
+      - main [ref=f12e35]:
+        - generic [ref=f12e36]:
+          - heading "ログイン" [level=1] [ref=f12e37]
+          - generic [ref=f12e38]:
+            - generic [ref=f12e39]:
+              - generic [ref=f12e40]: メールアドレス
+              - textbox "example@email.com" [ref=f12e41]
+            - generic [ref=f12e42]:
+              - generic [ref=f12e43]: パスワード
+              - textbox "8文字以上" [ref=f12e44]
+            - button "ログイン" [ref=f12e45]
+          - paragraph [ref=f12e46]:
+            - text: アカウントをお持ちでない場合
+            - link "新規登録" [ref=f12e47] [cursor=pointer]:
+              - /url: /auth/signup
+  - button "Open Next.js Dev Tools" [ref=f12e53] [cursor=pointer]
