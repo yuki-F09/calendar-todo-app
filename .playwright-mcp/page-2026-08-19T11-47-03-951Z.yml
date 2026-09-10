@@ -1,0 +1,155 @@
+- generic [active] [ref=f11e1]:
+  - banner [ref=f11e2]:
+    - generic [ref=f11e3]:
+      - link "Calendar TodoApp" [ref=f11e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=f11e5]:
+        - button "ログアウト" [ref=f11e7]
+  - generic [ref=f11e8]:
+    - generic [ref=f11e10]:
+      - heading "ユーザー設定" [level=1] [ref=f11e12]
+      - generic [ref=f11e13]:
+        - generic [ref=f11e15]:
+          - button "タスク管理" [expanded] [ref=f11e16]
+          - list [ref=f11e21]:
+            - listitem [ref=f11e22]:
+              - link "タグ一覧" [ref=f11e23] [cursor=pointer]:
+                - /url: /tags
+            - listitem
+            - listitem [ref=f11e24]:
+              - link "タスクの表示設定" [ref=f11e25] [cursor=pointer]:
+                - /url: /taskSetting
+        - generic [ref=f11e27]:
+          - button "ユーザー設定" [expanded] [ref=f11e28]
+          - generic:
+            - generic:
+              - list:
+                - listitem
+    - main [ref=f11e32]:
+      - button "Toggle Sidebar" [ref=f11e33]
+      - generic [ref=f11e45]:
+        - generic [ref=f11e46]:
+          - heading "August 2026" [level=2] [ref=f11e48]
+          - generic [ref=f11e49]:
+            - button "today" [disabled] [ref=f11e50]
+            - generic [ref=f11e51]:
+              - button "Previous month" [ref=f11e52] [cursor=pointer]:
+                - img [ref=f11e53]: 
+              - button "Next month" [ref=f11e54] [cursor=pointer]:
+                - img [ref=f11e55]: 
+        - generic "August 2026" [ref=f11e56]:
+          - grid [ref=f11e58]:
+            - rowgroup [ref=f11e59]:
+              - row [ref=f11e63]:
+                - columnheader "Sunday" [ref=f11e64]:
+                  - generic "Sunday" [ref=f11e66]: Sun
+                - columnheader "Monday" [ref=f11e67]:
+                  - generic "Monday" [ref=f11e69]: Mon
+                - columnheader "Tuesday" [ref=f11e70]:
+                  - generic "Tuesday" [ref=f11e72]: Tue
+                - columnheader "Wednesday" [ref=f11e73]:
+                  - generic "Wednesday" [ref=f11e75]: Wed
+                - columnheader "Thursday" [ref=f11e76]:
+                  - generic "Thursday" [ref=f11e78]: Thu
+                - columnheader "Friday" [ref=f11e79]:
+                  - generic "Friday" [ref=f11e81]: Fri
+                - columnheader "Saturday" [ref=f11e82]:
+                  - generic "Saturday" [ref=f11e84]: Sat
+            - rowgroup [ref=f11e85]:
+              - generic [ref=f11e88]:
+                - row [ref=f11e90]:
+                  - gridcell "July 26, 2026" [ref=f11e91] [cursor=pointer]:
+                    - generic "July 26, 2026" [ref=f11e94]: "26"
+                  - gridcell "July 27, 2026" [ref=f11e96] [cursor=pointer]:
+                    - generic "July 27, 2026" [ref=f11e99]: "27"
+                  - gridcell "July 28, 2026" [ref=f11e101] [cursor=pointer]:
+                    - generic "July 28, 2026" [ref=f11e104]: "28"
+                  - gridcell "July 29, 2026" [ref=f11e106] [cursor=pointer]:
+                    - generic "July 29, 2026" [ref=f11e109]: "29"
+                  - gridcell "July 30, 2026" [ref=f11e111] [cursor=pointer]:
+                    - generic "July 30, 2026" [ref=f11e114]: "30"
+                  - gridcell "July 31, 2026" [ref=f11e116] [cursor=pointer]:
+                    - generic "July 31, 2026" [ref=f11e119]: "31"
+                  - gridcell "August 1, 2026" [ref=f11e121] [cursor=pointer]:
+                    - generic "August 1, 2026" [ref=f11e124]: "1"
+                - row [ref=f11e126]:
+                  - gridcell "August 2, 2026" [ref=f11e127] [cursor=pointer]:
+                    - generic [ref=f11e128]:
+                      - generic "August 2, 2026" [ref=f11e130]: "2"
+                      - generic [ref=f11e131]: 更新テストデータ
+                  - gridcell "August 3, 2026" [ref=f11e138] [cursor=pointer]:
+                    - generic "August 3, 2026" [ref=f11e141]: "3"
+                  - gridcell "August 4, 2026" [ref=f11e143] [cursor=pointer]:
+                    - generic [ref=f11e144]:
+                      - generic "August 4, 2026" [ref=f11e146]: "4"
+                      - generic [ref=f11e147]: getClaims()
+                  - gridcell "August 5, 2026" [ref=f11e154] [cursor=pointer]:
+                    - generic "August 5, 2026" [ref=f11e157]: "5"
+                  - gridcell "August 6, 2026" [ref=f11e159] [cursor=pointer]:
+                    - generic "August 6, 2026" [ref=f11e162]: "6"
+                  - gridcell "August 7, 2026" [ref=f11e164] [cursor=pointer]:
+                    - generic "August 7, 2026" [ref=f11e167]: "7"
+                  - gridcell "August 8, 2026" [ref=f11e169] [cursor=pointer]:
+                    - generic "August 8, 2026" [ref=f11e172]: "8"
+                - row [ref=f11e174]:
+                  - gridcell "August 9, 2026" [ref=f11e175] [cursor=pointer]:
+                    - generic "August 9, 2026" [ref=f11e178]: "9"
+                  - gridcell "August 10, 2026" [ref=f11e180] [cursor=pointer]:
+                    - generic "August 10, 2026" [ref=f11e183]: "10"
+                  - gridcell "August 11, 2026" [ref=f11e185] [cursor=pointer]:
+                    - generic "August 11, 2026" [ref=f11e188]: "11"
+                  - gridcell "August 12, 2026" [ref=f11e190] [cursor=pointer]:
+                    - generic "August 12, 2026" [ref=f11e193]: "12"
+                  - gridcell "August 13, 2026" [ref=f11e195] [cursor=pointer]:
+                    - generic "August 13, 2026" [ref=f11e198]: "13"
+                  - gridcell "August 14, 2026" [ref=f11e200] [cursor=pointer]:
+                    - generic "August 14, 2026" [ref=f11e203]: "14"
+                  - gridcell "August 15, 2026" [ref=f11e205] [cursor=pointer]:
+                    - generic "August 15, 2026" [ref=f11e208]: "15"
+                - row [ref=f11e210]:
+                  - gridcell "August 16, 2026" [ref=f11e211] [cursor=pointer]:
+                    - generic "August 16, 2026" [ref=f11e214]: "16"
+                  - gridcell "August 17, 2026" [ref=f11e216] [cursor=pointer]:
+                    - generic "August 17, 2026" [ref=f11e219]: "17"
+                  - gridcell "August 18, 2026" [ref=f11e221] [cursor=pointer]:
+                    - generic "August 18, 2026" [ref=f11e224]: "18"
+                  - gridcell "August 19, 2026" [ref=f11e226] [cursor=pointer]:
+                    - generic "August 19, 2026" [ref=f11e229]: "19"
+                  - gridcell "August 20, 2026" [ref=f11e231] [cursor=pointer]:
+                    - generic "August 20, 2026" [ref=f11e234]: "20"
+                  - gridcell "August 21, 2026" [ref=f11e236] [cursor=pointer]:
+                    - generic "August 21, 2026" [ref=f11e239]: "21"
+                  - gridcell "August 22, 2026" [ref=f11e241] [cursor=pointer]:
+                    - generic "August 22, 2026" [ref=f11e244]: "22"
+                - row [ref=f11e246]:
+                  - gridcell "August 23, 2026" [ref=f11e247] [cursor=pointer]:
+                    - generic "August 23, 2026" [ref=f11e250]: "23"
+                  - gridcell "August 24, 2026" [ref=f11e252] [cursor=pointer]:
+                    - generic "August 24, 2026" [ref=f11e255]: "24"
+                  - gridcell "August 25, 2026" [ref=f11e257] [cursor=pointer]:
+                    - generic "August 25, 2026" [ref=f11e260]: "25"
+                  - gridcell "August 26, 2026" [ref=f11e262] [cursor=pointer]:
+                    - generic "August 26, 2026" [ref=f11e265]: "26"
+                  - gridcell "August 27, 2026" [ref=f11e267] [cursor=pointer]:
+                    - generic "August 27, 2026" [ref=f11e270]: "27"
+                  - gridcell "August 28, 2026" [ref=f11e272] [cursor=pointer]:
+                    - generic "August 28, 2026" [ref=f11e275]: "28"
+                  - gridcell "August 29, 2026" [ref=f11e277] [cursor=pointer]:
+                    - generic "August 29, 2026" [ref=f11e280]: "29"
+                - row [ref=f11e282]:
+                  - gridcell "August 30, 2026" [ref=f11e283] [cursor=pointer]:
+                    - generic "August 30, 2026" [ref=f11e286]: "30"
+                  - gridcell "August 31, 2026" [ref=f11e288] [cursor=pointer]:
+                    - generic "August 31, 2026" [ref=f11e291]: "31"
+                  - gridcell "September 1, 2026" [ref=f11e293] [cursor=pointer]:
+                    - generic "September 1, 2026" [ref=f11e296]: "1"
+                  - gridcell "September 2, 2026" [ref=f11e298] [cursor=pointer]:
+                    - generic "September 2, 2026" [ref=f11e301]: "2"
+                  - gridcell "September 3, 2026" [ref=f11e303] [cursor=pointer]:
+                    - generic "September 3, 2026" [ref=f11e306]: "3"
+                  - gridcell "September 4, 2026" [ref=f11e308] [cursor=pointer]:
+                    - generic "September 4, 2026" [ref=f11e311]: "4"
+                  - gridcell "September 5, 2026" [ref=f11e313] [cursor=pointer]:
+                    - generic "September 5, 2026" [ref=f11e316]: "5"
+  - button "Open Next.js Dev Tools" [ref=f11e40] [cursor=pointer]
+  - alert [ref=f11e318]

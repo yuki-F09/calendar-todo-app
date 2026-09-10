@@ -9,7 +9,7 @@ export async function signUp(_prevState: State, formData: FormData): Promise<Sta
   const confirmPassword = formData.get("confirmPassword") as string
 
   if (password !== confirmPassword) {
-    return { message: 'パスワードが一致しません。' }
+    return { message: 'パスワードが一致しません' }
   }
 
   const supabase = await createClient()
