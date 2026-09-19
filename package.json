@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "format": "prettier --check \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,lintstagedrc,yml,yaml}\" --cache",
+    "format:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,lintstagedrc,yml,yaml}\" --cache"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.20",
@@ -39,6 +41,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "prettier": "^3.9.8",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "prisma": "^7.8.0",
     "tailwindcss": "^4",
     "typescript": "^5"

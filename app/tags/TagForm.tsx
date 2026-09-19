@@ -1,27 +1,30 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { TagColor } from "@/lib/generated/prisma/enums"
-import { Color_Labels, Color_Map } from "@/components/ui/tag"
-import { createTag, editTag ,type TagActionState } from "./actions"
-import { useActionState } from "react"
+import { Button } from "@/components/ui/button";
+import { TagColor } from "@/lib/generated/prisma/enums";
+import { Color_Labels, Color_Map } from "@/components/ui/tag";
+import { createTag, editTag, type TagActionState } from "./actions";
+import { useActionState } from "react";
 
 type Tag = {
-  id: number
-  tag_name: string
-  color: string
-}
+  id: number;
+  tag_name: string;
+  color: string;
+};
 
 type Props = {
-  tag?: Tag
-  buttonLabel: string
-}
+  tag?: Tag;
+  buttonLabel: string;
+};
 
 export default function TagForm({ tag, buttonLabel }: Props) {
-  const colorOptions = Object.values(TagColor)
+  const colorOptions = Object.values(TagColor);
 
-  const action = tag ? editTag : createTag
-  const [state, formAction, isPending] = useActionState<TagActionState, FormData>(action, null)
+  const action = tag ? editTag : createTag;
+  const [state, formAction, isPending] = useActionState<
+    TagActionState,
+    FormData
+  >(action, null);
 
   return (
     <form action={formAction} className="flex flex-col gap-4">
@@ -43,8 +46,18 @@ export default function TagForm({ tag, buttonLabel }: Props) {
         <p className="text-sm text-zinc-400">色を選択</p>
         <div className="flex gap-2 flex-wrap">
           {colorOptions.map((color) => (
-            <label key={color} className="cursor-pointer" title={Color_Labels[color]}>
-              <input type="radio" name="color" value={color} defaultChecked={tag?.color === color} className="sr-only peer" />
+            <label
+              key={color}
+              className="cursor-pointer"
+              title={Color_Labels[color]}
+            >
+              <input
+                type="radio"
+                name="color"
+                value={color}
+                defaultChecked={tag?.color === color}
+                className="sr-only peer"
+              />
               <span
                 className={`block w-7 h-7 rounded-full ${Color_Map[color]} hover:opacity-70 transition peer-checked:ring-2 peer-checked:ring-white peer-checked:ring-offset-2 peer-checked:ring-offset-zinc-900`}
               />
@@ -57,8 +70,8 @@ export default function TagForm({ tag, buttonLabel }: Props) {
       </div>
 
       <Button type="submit" size="lg" disabled={isPending}>
-        {isPending? "作成中": buttonLabel}
+        {isPending ? "作成中" : buttonLabel}
       </Button>
     </form>
-  )
+  );
 }
