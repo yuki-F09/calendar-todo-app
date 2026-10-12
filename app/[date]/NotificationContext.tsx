@@ -1,21 +1,33 @@
-'use client'
-import { createContext, useContext, useState, useCallback, useRef } from 'react'
+"use client";
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useRef,
+} from "react";
 
 type NotificationContextType = {
-  notify: (msg: string) => void
-}
+  notify: (msg: string) => void;
+};
 
-const NotificationContext = createContext<NotificationContextType>({ notify: () => {} })
+const NotificationContext = createContext<NotificationContextType>({
+  notify: () => {},
+});
 
-export function NotificationProvider({ children }: { children: React.ReactNode }) {
-  const [message, setMessage] = useState<string | null>(null)
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+export function NotificationProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [message, setMessage] = useState<string | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const notify = useCallback((msg: string) => {
-    setMessage(msg)
-    if (timerRef.current) clearTimeout(timerRef.current)
-    timerRef.current = setTimeout(() => setMessage(null), 3000)
-  }, [])
+    setMessage(msg);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setMessage(null), 3000);
+  }, []);
 
   return (
     <NotificationContext.Provider value={{ notify }}>
@@ -26,7 +38,7 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
       )}
       {children}
     </NotificationContext.Provider>
-  )
+  );
 }
 
-export const useNotification = () => useContext(NotificationContext)
+export const useNotification = () => useContext(NotificationContext);

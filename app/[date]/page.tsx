@@ -1,28 +1,23 @@
-import { createClient } from '@/lib/supabase/server'
-import { prisma } from '@/lib/prisma'
-import TaskFormCollapsible from './TaskFormCollapsible'
-import TaskIndex from './TaskIndex'
-import { NotificationProvider } from './NotificationContext'
+import { createClient } from "@/lib/supabase/server";
+import TaskFormCollapsible from "./TaskFormCollapsible";
+import TaskIndex from "./TaskIndex";
+import { NotificationProvider } from "./NotificationContext";
+import { getTasks } from "@/data/tasks";
 
 type Props = {
-  params: Promise<{ date: string }>
-}
+  params: Promise<{ date: string }>;
+};
 
 export default async function DatePage({ params }: Props) {
-  const { date } = await params
+  const { date } = await params;
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getClaims();
+  const user = data?.claims;
 
-  const supabase = await createClient()
-  const { data } = await supabase.auth.getClaims()
-  const user = data?.claims
+  const {tags, tasks} = user?
+  await getTasks({userId:user.sub, date: date}):
+  {tasks:[], tags: []}
 
-  const [tags, tasks] = user
-    ? await Promise.all([
-        prisma.tag.findMany({ where: { auth_id: user.sub } }),
-        prisma.task.findMany({ where: { auth_id: user.sub, date }, include: { tags: true } }),
-      ])
-    : [[], []]
-
-    
   return (
     <main className="flex-1 flex flex-col items-center px-4 py-12">
       <div className="w-full max-w-md mx-auto">
@@ -33,11 +28,13 @@ export default async function DatePage({ params }: Props) {
             <TaskIndex tasks={tasks} tags={tags} date={date} />
           </div>
           <div className="Task-create-wrapper">
-            <h2 className="text-lg font-semibold text-white my-3">タスク作成</h2>
+            <h2 className="text-lg font-semibold text-white my-3">
+              タスク作成
+            </h2>
             <TaskFormCollapsible tags={tags} date={date} />
           </div>
         </NotificationProvider>
       </div>
     </main>
-  )
+  );
 }
