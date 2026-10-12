@@ -1,44 +1,46 @@
-'use client'
-import { useState, useRef, useActionState, useEffect } from 'react'
-import { Plus, X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { createTask, type TaskActionState } from './actions'
-import { useNotification } from './NotificationContext'
-
+"use client";
+import { useState, useRef, useActionState, useEffect } from "react";
+import { Plus, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { createTask, type TaskActionState } from "./actions";
+import { useNotification } from "./NotificationContext";
 
 type Tag = {
-  id: number
-  tag_name: string
-  color: string
-}
+  id: number;
+  tag_name: string;
+  color: string;
+};
 
 type Props = {
-  tags: Tag[]
-  buttonLabel: string
-  date: string
-}
+  tags: Tag[];
+  buttonLabel: string;
+  date: string;
+};
 
 export default function TaskForm({ tags, buttonLabel, date }: Props) {
-  const [selectedTagIds, setSelectedTagIds] = useState<(number | '')[]>([''])
-  const formRef = useRef<HTMLFormElement>(null)
-  const [state, formAction, isPending] = useActionState<TaskActionState, FormData>(createTask, null)
-  const { notify } = useNotification()
+  const [selectedTagIds, setSelectedTagIds] = useState<(number | "")[]>([""]);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [state, formAction, isPending] = useActionState<
+    TaskActionState,
+    FormData
+  >(createTask, null);
+  const { notify } = useNotification();
 
   useEffect(() => {
     if (state?.success) {
-      notify('タスクを作成しました')
-      formRef.current?.reset()
-      setSelectedTagIds([''])
+      notify("タスクを作成しました");
+      formRef.current?.reset();
+      setSelectedTagIds([""]);
     }
-  }, [state, notify])
+  }, [state, notify]);
 
-  const addTagSelect = () => setSelectedTagIds((prev) => [...prev, ''])
+  const addTagSelect = () => setSelectedTagIds((prev) => [...prev, ""]);
 
   const removeTagSelect = (index: number) =>
-    setSelectedTagIds((prev) => prev.filter((_, i) => i !== index))
+    setSelectedTagIds((prev) => prev.filter((_, i) => i !== index));
 
-  const updateTagSelect = (index: number, value: number | '') =>
-    setSelectedTagIds((prev) => prev.map((v, i) => (i === index ? value : v)))
+  const updateTagSelect = (index: number, value: number | "") =>
+    setSelectedTagIds((prev) => prev.map((v, i) => (i === index ? value : v)));
 
   return (
     <form ref={formRef} action={formAction} className="flex flex-col gap-4">
@@ -65,7 +67,9 @@ export default function TaskForm({ tags, buttonLabel, date }: Props) {
       </div>
 
       <div className="flex items-center gap-3">
-        <label className="text-sm font-medium text-zinc-300 whitespace-nowrap">タスクの繰り越し機能</label>
+        <label className="text-sm font-medium text-zinc-300 whitespace-nowrap">
+          タスクの繰り越し機能
+        </label>
         <select
           name="role_over"
           defaultValue="false"
@@ -94,7 +98,10 @@ export default function TaskForm({ tags, buttonLabel, date }: Props) {
               name="tag_ids"
               value={value}
               onChange={(e) =>
-                updateTagSelect(index, e.target.value === '' ? '' : Number(e.target.value))
+                updateTagSelect(
+                  index,
+                  e.target.value === "" ? "" : Number(e.target.value),
+                )
               }
               className="flex-1 px-4 py-2.5 rounded-md bg-zinc-800 border border-zinc-700 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
             >
@@ -119,8 +126,8 @@ export default function TaskForm({ tags, buttonLabel, date }: Props) {
       </div>
 
       <Button type="submit" size="lg" disabled={isPending}>
-        {isPending? "作成中":buttonLabel}
+        {isPending ? "作成中" : buttonLabel}
       </Button>
     </form>
-  )
+  );
 }

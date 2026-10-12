@@ -1,54 +1,65 @@
-'use client'
-import { useState, useRef, useEffect, useActionState } from 'react'
-import { Plus, X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { editTask, type TaskActionState } from './actions'
-import { useNotification } from './NotificationContext'
+"use client";
+import { useState, useRef, useEffect, useActionState } from "react";
+import { Plus, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { editTask, type TaskActionState } from "./actions";
+import { useNotification } from "./NotificationContext";
 
 type Tag = {
-  id: number
-  tag_name: string
-  color: string
-}
+  id: number;
+  tag_name: string;
+  color: string;
+};
 
 type Task = {
-  id: number
-  title: string
-  description: string | null
-  role_over: boolean
-  tags: Tag[]
-}
+  id: number;
+  title: string;
+  description: string | null;
+  role_over: boolean;
+  tags: Tag[];
+};
 
 type Props = {
-  task: Task
-  tags: Tag[]
-  date: string
-  userTags?: Tag[]
-  onSuccess?: () => void
-}
+  task: Task;
+  tags: Tag[];
+  date: string;
+  userTags?: Tag[];
+  onSuccess?: () => void;
+};
 
-export default function EditTaskForm({ task, tags, userTags = [], date, onSuccess }: Props) {
-  const initialTagIds: (number | '')[] = userTags.length > 0 ? userTags.map((t) => t.id) : ['']
-  const [selectedTagIds, setSelectedTagIds] = useState<(number | '')[]>(initialTagIds)
-  const formRef = useRef<HTMLFormElement>(null)
-  const [state, formAction, isPending] = useActionState<TaskActionState, FormData>(editTask, null)
-  const { notify } = useNotification()
+export default function EditTaskForm({
+  task,
+  tags,
+  userTags = [],
+  date,
+  onSuccess,
+}: Props) {
+  const initialTagIds: (number | "")[] =
+    userTags.length > 0 ? userTags.map((t) => t.id) : [""];
+  const [selectedTagIds, setSelectedTagIds] =
+    useState<(number | "")[]>(initialTagIds);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [state, formAction, isPending] = useActionState<
+    TaskActionState,
+    FormData
+  >(editTask, null);
+  const { notify } = useNotification();
 
-
-
-
-
-  const addTagSelect = () => setSelectedTagIds((prev) => [...prev, ''])
+  const addTagSelect = () => setSelectedTagIds((prev) => [...prev, ""]);
 
   const removeTagSelect = (index: number) =>
-    setSelectedTagIds((prev) => prev.filter((_, i) => i !== index))
+    setSelectedTagIds((prev) => prev.filter((_, i) => i !== index));
 
-  const updateTagSelect = (index: number, value: number | '') =>
-    setSelectedTagIds((prev) => prev.map((v, i) => (i === index ? value : v)))
+  const updateTagSelect = (index: number, value: number | "") =>
+    setSelectedTagIds((prev) => prev.map((v, i) => (i === index ? value : v)));
 
   return (
     <form ref={formRef} action={formAction} className="flex flex-col gap-4">
-      {!isPending && state?.success?<p className='text-green-400'>編集しました</p>:""}
+      {!isPending && state?.success ? (
+        <p className="text-green-400">編集しました</p>
+      ) : (
+        ""
+      )}
       <input type="hidden" name="id" value={task.id} />
       <input type="hidden" name="date" value={date} />
 
@@ -61,21 +72,23 @@ export default function EditTaskForm({ task, tags, userTags = [], date, onSucces
           className="w-full px-4 py-2.5 rounded-md bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
         />
       </div>
-        {state?.errors?.title && (
-          <p className="text-sm text-red-400">{state.errors.title[0]}</p>
-        )}
+      {state?.errors?.title && (
+        <p className="text-sm text-red-400">{state.errors.title[0]}</p>
+      )}
       <div className="flex flex-col gap-1">
         <textarea
           name="description"
           rows={3}
-          defaultValue={task.description ?? ''}
+          defaultValue={task.description ?? ""}
           placeholder="タスクの詳細"
           className="w-full px-4 py-2.5 rounded-md bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition resize-none"
         />
       </div>
 
       <div className="flex items-center gap-3">
-        <label className="text-sm font-medium text-zinc-300 whitespace-nowrap">タスク実行日</label>
+        <label className="text-sm font-medium text-zinc-300 whitespace-nowrap">
+          タスク実行日
+        </label>
         <input
           type="date"
           name="new_date"
@@ -85,7 +98,9 @@ export default function EditTaskForm({ task, tags, userTags = [], date, onSucces
       </div>
 
       <div className="flex items-center gap-3">
-        <label className="text-sm font-medium text-zinc-300 whitespace-nowrap">タスクの繰り越し機能</label>
+        <label className="text-sm font-medium text-zinc-300 whitespace-nowrap">
+          タスクの繰り越し機能
+        </label>
         <select
           name="role_over"
           defaultValue={String(task.role_over)}
@@ -114,7 +129,10 @@ export default function EditTaskForm({ task, tags, userTags = [], date, onSucces
               name="tag_ids"
               value={value}
               onChange={(e) =>
-                updateTagSelect(index, e.target.value === '' ? '' : Number(e.target.value))
+                updateTagSelect(
+                  index,
+                  e.target.value === "" ? "" : Number(e.target.value),
+                )
               }
               className="flex-1 px-4 py-2.5 rounded-md bg-zinc-800 border border-zinc-700 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
             >
@@ -139,8 +157,8 @@ export default function EditTaskForm({ task, tags, userTags = [], date, onSucces
       </div>
 
       <Button type="submit" variant="success" size="lg" disabled={isPending}>
-        {isPending? "編集中":"編集"}
+        {isPending ? "編集中" : "編集"}
       </Button>
     </form>
-  )
+  );
 }

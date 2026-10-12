@@ -25,8 +25,9 @@ alwaysApply: true
    - DOM状態を記録
 
 ## 収集した情報の格納先
+
 .claude/test/test-cases以下のmdファイルの名前に対応したフォルダが、.claude/test/results以下に存在する。テスト結果のうち、スクリーンショットはそのファイル名のscreenshotsフォルダに、それ以外の結果は日付.mdにまとめて保存してください。
 
 例）
 results/auth/2026-08-16.md
-results/auth/screenshots/error-TC-002-20260816-1432.png 
+results/auth/screenshots/error-TC-002-20260816-1432.png

@@ -27,10 +27,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = await createClient()
+  const supabase = await createClient();
   const {
-  data: { user },
-  } = await supabase.auth.getUser()
+    data: { user },
+  } = await supabase.auth.getUser();
 
   return (
     <html
@@ -38,34 +38,24 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-
-
-        { user? (
+        {user ? (
           <>
-            <Header/>
+            <Header />
             <SidebarProvider defaultOpen={false}>
-            <AppSidebar/>
-            <main className="flex-1">
-              <SidebarTrigger/>
-              {children}
-            </main>
+              <AppSidebar />
+              <main className="flex-1">
+                <SidebarTrigger />
+                {children}
+              </main>
             </SidebarProvider>
           </>
-        )
-          :(
-            <>
-              <BeforeLoginHeader/>
-              {children}
-            </>
-
-          )
-          
-        }
-
-        </body>
-
+        ) : (
+          <>
+            <BeforeLoginHeader />
+            {children}
+          </>
+        )}
+      </body>
     </html>
   );
 }
-
-

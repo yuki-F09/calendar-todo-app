@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Sidebar,
@@ -11,15 +11,15 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+} from "@/components/ui/collapsible";
 
-import Link from "next/link"
-import { ChevronDown } from "lucide-react"
+import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 
 export function AppSidebar() {
   return (
@@ -28,7 +28,6 @@ export function AppSidebar() {
         <h1>ユーザー設定</h1>
       </SidebarHeader>
       <SidebarContent>
-
         <Collapsible defaultOpen className="group/collapsible">
           <SidebarGroup>
             <SidebarGroupLabel asChild>
@@ -42,26 +41,25 @@ export function AppSidebar() {
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <Link href="/tags" prefetch={false}>タグ一覧</Link>
+                      <Link href="/tags" prefetch={false}>
+                        タグ一覧
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
 
                   {
+                    <SidebarMenuItem>
+                      <SidebarMenuButton asChild>
+                        {/*                       <Link href="/regularTask">レギュラータスク設定</Link> */}
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  }
 
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-
-                      {/*                       <Link href="/regularTask">レギュラータスク設定</Link> */}
-                      
-                      
-
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-}
-
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <Link href="/taskSetting" prefetch={false}>タスクの表示設定</Link>
+                      <Link href="/taskSetting" prefetch={false}>
+                        タスクの表示設定
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
@@ -84,7 +82,6 @@ export function AppSidebar() {
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
                       {/*<Link href="/auth/passwordReset">パスワードリセット</Link>*/}
-                      
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
@@ -92,9 +89,8 @@ export function AppSidebar() {
             </CollapsibleContent>
           </SidebarGroup>
         </Collapsible>
-
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>
-  )
+  );
 }
